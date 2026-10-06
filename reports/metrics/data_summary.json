@@ -1,0 +1,88 @@
+{
+  "md5": "e90efcb83d69faf99fcab8b0255024de",
+  "rows": 284807,
+  "frauds": 492,
+  "fraud_rate": 0.001727,
+  "hours": 47.997778,
+  "duplicate_rows": 1081,
+  "splits": {
+    "train": {
+      "rows": 144786,
+      "frauds": 281,
+      "fraud_rate": 0.001941,
+      "from_hour": 0.0,
+      "to_hour": 23.999444
+    },
+    "validation": {
+      "rows": 47445,
+      "frauds": 96,
+      "fraud_rate": 0.002023,
+      "from_hour": 24.0,
+      "to_hour": 35.999722
+    },
+    "test": {
+      "rows": 92576,
+      "frauds": 115,
+      "fraud_rate": 0.001242,
+      "from_hour": 36.0,
+      "to_hour": 47.997778
+    }
+  },
+  "windows": [
+    {
+      "window": 0,
+      "rows": 12340,
+      "frauds": 55,
+      "fraud_rate": 0.004457
+    },
+    {
+      "window": 1,
+      "rows": 35061,
+      "frauds": 91,
+      "fraud_rate": 0.002595
+    },
+    {
+      "window": 2,
+      "rows": 46850,
+      "frauds": 71,
+      "fraud_rate": 0.001515
+    },
+    {
+      "window": 3,
+      "rows": 50535,
+      "frauds": 64,
+      "fraud_rate": 0.001266
+    },
+    {
+      "window": 4,
+      "rows": 11594,
+      "frauds": 69,
+      "fraud_rate": 0.005951
+    },
+    {
+      "window": 5,
+      "rows": 35851,
+      "frauds": 27,
+      "fraud_rate": 0.000753
+    },
+    {
+      "window": 6,
+      "rows": 49585,
+      "frauds": 63,
+      "fraud_rate": 0.001271
+    },
+    {
+      "window": 7,
+      "rows": 42991,
+      "frauds": 52,
+      "fraud_rate": 0.00121
+    }
+  ],
+  "fraud_amount": {
+    "median": 9.25,
+    "mean": 122.211321,
+    "total": 60127.97,
+    "share_at_most_1_eur": 0.367886,
+    "top_decile_share_of_value": 0.614342
+  }
+}

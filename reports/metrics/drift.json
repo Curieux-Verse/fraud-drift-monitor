@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "feature": "V1",
+      "psi": 1.566417,
+      "ks": 0.422703,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.005071
+    },
+    {
+      "feature": "V3",
+      "psi": 1.425274,
+      "ks": 0.518778,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.01105
+    },
+    {
+      "feature": "V28",
+      "psi": 1.046401,
+      "ks": 0.360577,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.009222
+    },
+    {
+      "feature": "V25",
+      "psi": 0.439705,
+      "ks": 0.295767,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.008467
+    },
+    {
+      "feature": "V15",
+      "psi": 0.399371,
+      "ks": 0.277069,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.004615
+    },
+    {
+      "feature": "V5",
+      "psi": 0.353685,
+      "ks": 0.26808,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.00489
+    },
+    {
+      "feature": "V22",
+      "psi": 0.339055,
+      "ks": 0.22002,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.009342
+    },
+    {
+      "feature": "V11",
+      "psi": 0.306883,
+      "ks": 0.174435,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006934
+    },
+    {
+      "feature": "V23",
+      "psi": 0.225276,
+      "ks": 0.180514,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.003187
+    },
+    {
+      "feature": "V24",
+      "psi": 0.211393,
+      "ks": 0.091767,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006168
+    },
+    {
+      "feature": "V26",
+      "psi": 0.205361,
+      "ks": 0.075426,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.018778
+    },
+    {
+      "feature": "V4",
+      "psi": 0.194265,
+      "ks": 0.173295,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.041522
+    },
+    {
+      "feature": "V21",
+      "psi": 0.171194,
+      "ks": 0.158375,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.01029
+    },
+    {
+      "feature": "V7",
+      "psi": 0.15424,
+      "ks": 0.137897,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006693
+    },
+    {
+      "feature": "V8",
+      "psi": 0.138996,
+      "ks": 0.163626,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.009818
+    },
+    {
+      "feature": "V20",
+      "psi": 0.099466,
+      "ks": 0.144073,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.012004
+    },
+    {
+      "feature": "V27",
+      "psi": 0.088074,
+      "ks": 0.092602,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006701
+    },
+    {
+      "feature": "V6",
+      "psi": 0.083904,
+      "ks": 0.115003,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.007867
+    },
+    {
+      "feature": "V14",
+      "psi": 0.082538,
+      "ks": 0.085349,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.639834
+    },
+    {
+      "feature": "V10",
+      "psi": 0.077438,
+      "ks": 0.06632,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.088187
+    },
+    {
+      "feature": "V9",
+      "psi": 0.06367,
+      "ks": 0.111667,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006965
+    },
+    {
+      "feature": "V18",
+      "psi": 0.05407,
+      "ks": 0.102983,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006465
+    },
+    {
+      "feature": "V17",
+      "psi": 0.041092,
+      "ks": 0.08387,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.008971
+    },
+    {
+      "feature": "V2",
+      "psi": 0.025302,
+      "ks": 0.042508,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.005392
+    },
+    {
+      "feature": "V19",
+      "psi": 0.022515,
+      "ks": 0.047396,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006569
+    },
+    {
+      "feature": "V12",
+      "psi": 0.010565,
+      "ks": 0.038637,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.031926
+    },
+    {
+      "feature": "V16",
+      "psi": 0.008391,
+      "ks": 0.015469,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.006778
+    },
+    {
+      "feature": "V13",
+      "psi": 0.00434,
+      "ks": 0.016742,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.004494
+    },
+    {
+      "feature": "log_amount",
+      "psi": 0.002313,
+      "ks": 0.022048,
+      "ks_pvalue": 0.0,
+      "gain_share": 0.0118
+    }
+  ],
+  "summary": {
+    "n_features": 29,
+    "psi_ge_0.10": 15,
+    "psi_ge_0.25": 8,
+    "ks_significant_after_bonferroni": 29,
+    "ks_ge_0.10": 17,
+    "unweighted_share": 0.275862,
+    "weighted_share": 0.05959,
+    "gain_share_of_8_most_drifted": 0.05959,
+    "domain_auc": 0.995423,
+    "score_psi": 0.185395,
+    "time_psi": 12.433461
+  },
+  "psi_noise": [
+    {
+      "batch_rows": 500,
+      "mean_max_psi": 0.03987,
+      "max": 0.051633
+    },
+    {
+      "batch_rows": 2000,
+      "mean_max_psi": 0.009807,
+      "max": 0.013041
+    },
+    {
+      "batch_rows": 10000,
+      "mean_max_psi": 0.001767,
+      "max": 0.002831
+    }
+  ],
+  "null_control": {
+    "checks": 40,
+    "warn": 0,
+    "retrain": 0,
+    "max_feature_psi": 0.007204,
+    "max_score_psi": 0.006104
+  },
+  "natural_windows": [
+    {
+      "window": 4,
+      "n_rows": 11594,
+      "max_psi": 1.59467,
+      "top_feature": "V1",
+      "n_features_drifted": 11,
+      "weighted_share": 0.087723,
+      "score_psi": 0.107035,
+      "alert_rate": 0.01242,
+      "alert_ratio": 1.684236,
+      "anomaly_ratio": {
+        "isolation_forest": 1.21981,
+        "autoencoder": 1.321254
+      },
+      "n_frauds": 69,
+      "ap": 0.870887,
+      "ap_adjusted": 0.850757,
+      "ap_reference": 0.940375,
+      "ap_rel_drop": 0.0953,
+      "ap_diff_hi": 0.009687,
+      "recall": 0.927536,
+      "precision": 0.444444,
+      "cost_per_1k": 91.957047,
+      "state": "WARN",
+      "label_free_state": "WARN",
+      "rules": [
+        "W_feature_psi",
+        "W_score_psi",
+        "W_alert_rate"
+      ]
+    },
+    {
+      "window": 5,
+      "n_rows": 35851,
+      "max_psi": 1.581143,
+      "top_feature": "V1",
+      "n_features_drifted": 8,
+      "weighted_share": 0.05959,
+      "score_psi": 0.20499,
+      "alert_rate": 0.005746,
+      "alert_ratio": 1.151204,
+      "anomaly_ratio": {
+        "isolation_forest": 0.764291,
+        "autoencoder": 0.68893
+      },
+      "n_frauds": 27,
+      "ap": 0.71543,
+      "ap_adjusted": 0.786445,
+      "ap_reference": 0.951357,
+      "ap_rel_drop": 0.173345,
+      "ap_diff_hi": -0.029496,
+      "recall": 0.814815,
+      "precision": 0.106796,
+      "cost_per_1k": 126.4107,
+      "state": "RETRAIN",
+      "label_free_state": "WARN",
+      "rules": [
+        "W_feature_psi",
+        "W_score_psi",
+        "R1_performance"
+      ]
+    },
+    {
+      "window": 6,
+      "n_rows": 49585,
+      "max_psi": 1.51677,
+      "top_feature": "V1",
+      "n_features_drifted": 8,
+      "weighted_share": 0.05959,
+      "score_psi": 0.197207,
+      "alert_rate": 0.006575,
+      "alert_ratio": 2.315929,
+      "anomaly_ratio": {
+        "isolation_forest": 1.262862,
+        "autoencoder": 1.244113
+      },
+      "n_frauds": 63,
+      "ap": 0.815489,
+      "ap_adjusted": 0.821083,
+      "ap_reference": 0.821822,
+      "ap_rel_drop": 0.000899,
+      "ap_diff_hi": 0.130114,
+      "recall": 0.857143,
+      "precision": 0.165644,
+      "cost_per_1k": 55.559746,
+      "state": "RETRAIN",
+      "label_free_state": "WARN",
+      "rules": [
+        "W_feature_psi",
+        "W_score_psi",
+        "W_alert_rate",
+        "retrain_flag_still_open"
+      ]
+    },
+    {
+      "window": 7,
+      "n_rows": 42991,
+      "max_psi": 1.62274,
+      "top_feature": "V1",
+      "n_features_drifted": 10,
+      "weighted_share": 0.1043,
+      "score_psi": 0.178201,
+      "alert_rate": 0.005234,
+      "alert_ratio": 2.698803,
+      "anomaly_ratio": {
+        "isolation_forest": 0.91222,
+        "autoencoder": 1.05028
+      },
+      "n_frauds": 52,
+      "ap": 0.751224,
+      "ap_adjusted": 0.752291,
+      "ap_reference": 0.757573,
+      "ap_rel_drop": 0.006972,
+      "ap_diff_hi": 0.130232,
+      "recall": 0.788462,
+      "precision": 0.182222,
+      "cost_per_1k": 82.20395,
+      "state": "RETRAIN",
+      "label_free_state": "RETRAIN",
+      "rules": [
+        "W_feature_psi",
+        "W_weighted_share",
+        "W_score_psi",
+        "W_alert_rate",
+        "R2_prediction_drift"
+      ]
+    }
+  ],
+  "bounds": {
+    "min_rows": 2000,
+    "psi_alert": 0.25,
+    "weighted_share_warn": 0.1,
+    "weighted_share_retrain": 0.25,
+    "score_psi_warn": 0.1,
+    "score_psi_retrain": 0.25,
+    "alert_ratio_warn": [
+      0.67,
+      1.5
+    ],
+    "alert_ratio_retrain": [
+      0.5,
+      2.0
+    ],
+    "anomaly_ratio_warn": 2.0,
+    "perf_rel_drop": 0.15,
+    "min_frauds": 25,
+    "persistence": 2
+  }
+}
