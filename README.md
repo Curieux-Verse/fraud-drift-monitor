@@ -28,7 +28,10 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-The largest dependency is PyTorch, used only for the autoencoder. On Linux, installing it first with `pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu` should avoid the much larger GPU build; that path was not tested here.
+The largest dependency is PyTorch, used only for the autoencoder. Two things to know about it:
+
+- **Windows:** clone into a short path such as `C:\src\fraud`. PyTorch ships deeply nested files, and `pip install` fails with a "No such file or directory" error if the full path passes 260 characters and long-path support is off.
+- **Linux:** installing it first with `pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu` should avoid the much larger GPU build. That path was not tested here.
 
 ## Reproduce the results
 
@@ -36,7 +39,7 @@ The largest dependency is PyTorch, used only for the autoencoder. On Linux, inst
 python -m fraudmon all
 ```
 
-This runs three stages and takes about 15 minutes on a laptop CPU (Intel i5-13500H):
+This runs three stages. On a laptop CPU (Intel i5-13500H) it took 15 minutes with the machine idle and 36 minutes with it busy:
 
 1. **`data`** downloads the CSV (150 MB) from a public mirror and checks its md5.
 2. **`train`** compares the imbalance strategies, then fits the final models and saves them to `models/`.
@@ -50,11 +53,11 @@ If the download fails, get `creditcard.csv` from the Kaggle page above and put i
 python -m fraudmon evaluate
 ```
 
-This reloads the saved models and rewrites everything under `reports/` without refitting them. It takes about 8 minutes, most of it in the simulations, which refit models as part of what they measure.
+This reloads the saved models and rewrites everything under `reports/` without refitting them. It takes about 8 minutes on an idle machine, most of it in the simulations, which refit models as part of what they measure.
 
 Each stage can also be run on its own:
 
-| Command | What it does | Time |
+| Command | What it does | Time, idle machine |
 |---|---|---|
 | `python -m fraudmon data` | Download, verify, summarise the data | 1 to 2 min |
 | `python -m fraudmon train` | Imbalance comparison, final models, out-of-fold reference scores | 6.5 min |
@@ -106,7 +109,9 @@ REPORT.md       the write-up
 
 ## Reproducibility
 
-Seeds are fixed in `config.py`, LightGBM runs in deterministic mode, and the thread count is fixed at 4 so results do not depend on the number of cores. Small differences in the last decimals are possible on other platforms or library builds.
+Seeds are fixed in `config.py`, LightGBM runs in deterministic mode, and the thread count is fixed at 4 so results do not depend on the number of cores.
+
+Running `python -m fraudmon all` from a clean clone on the same machine reproduced every committed file under `reports/` byte for byte. Small differences in the last decimals are possible on other platforms or library builds.
 
 ## Data
 
