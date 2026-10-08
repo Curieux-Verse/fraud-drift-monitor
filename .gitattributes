@@ -1,0 +1,4 @@
+# The pipeline writes these with LF on every platform. Checking them out the same way keeps a
+# regenerated file byte-identical to the committed one, whatever core.autocrlf is set to.
+reports/metrics/*.json text eol=lf
+reports/summary.md text eol=lf

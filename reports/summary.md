@@ -147,7 +147,7 @@ Anomaly-rate ratio by detector:
 | 36-42 h | 1.26 | 1.24 |
 | 42-48 h | 0.91 | 1.05 |
 
-False-alarm control, random halves of each day-1 window compared with each other: 40 checks, 0 WARN, 0 RETRAIN.
+False-alarm control, random halves of each day-1 window compared with each other: 160 checks, 5 WARN, 1 RETRAIN.
 
 ## Injected drift on a drift-free test bed
 
@@ -221,14 +221,14 @@ Labels for a window arrive when the next one starts. Static never retrains, peri
 
 | Policy | Retrains | Total cost (EUR) | Frauds missed | Frauds | False alarms |
 |---|---|---|---|---|---|
-| static | 0 | 11,887 | 30 | 211 | 720 |
+| static | 0 | 11,882 | 30 | 211 | 719 |
 | periodic | 3 | 10,763 | 32 | 211 | 389 |
-| triggered | 1 | 11,169 | 33 | 211 | 465 |
+| triggered | 1 | 11,164 | 33 | 211 | 464 |
 
 | Policy | Window | Retrained before | AP | Precision | Recall | EUR per 1,000 |
 |---|---|---|---|---|---|---|
 | static | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
-| static | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.4 |
+| static | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.3 |
 | static | 36-42 h |  | 0.815 | 0.17 | 0.86 | 55.6 |
 | static | 42-48 h |  | 0.751 | 0.18 | 0.79 | 82.2 |
 | periodic | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
@@ -236,7 +236,7 @@ Labels for a window arrive when the next one starts. Static never retrains, peri
 | periodic | 36-42 h | yes | 0.838 | 0.32 | 0.84 | 49.5 |
 | periodic | 42-48 h | yes | 0.760 | 0.31 | 0.77 | 71.9 |
 | triggered | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
-| triggered | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.4 |
+| triggered | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.3 |
 | triggered | 36-42 h | yes | 0.838 | 0.32 | 0.84 | 49.5 |
 | triggered | 42-48 h |  | 0.756 | 0.30 | 0.75 | 72.5 |
 
@@ -244,14 +244,14 @@ Labels for a window arrive when the next one starts. Static never retrains, peri
 
 | Policy | Retrains | Total cost (EUR) | Frauds missed | Frauds | False alarms |
 |---|---|---|---|---|---|
-| static | 0 | 18,774 | 96 | 211 | 720 |
+| static | 0 | 18,769 | 96 | 211 | 719 |
 | periodic | 3 | 11,526 | 57 | 211 | 372 |
-| triggered | 2 | 11,906 | 57 | 211 | 448 |
+| triggered | 2 | 11,901 | 57 | 211 | 447 |
 
 | Policy | Window | Retrained before | AP | Precision | Recall | EUR per 1,000 |
 |---|---|---|---|---|---|---|
 | static | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
-| static | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.4 |
+| static | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.3 |
 | static | 36-42 h |  | 0.262 | 0.07 | 0.30 | 123.9 |
 | static | 42-48 h |  | 0.138 | 0.05 | 0.19 | 163.5 |
 | periodic | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
@@ -259,6 +259,6 @@ Labels for a window arrive when the next one starts. Static never retrains, peri
 | periodic | 36-42 h | yes | 0.273 | 0.15 | 0.30 | 117.5 |
 | periodic | 42-48 h | yes | 0.925 | 0.40 | 0.94 | 11.2 |
 | triggered | 24-30 h |  | 0.871 | 0.44 | 0.93 | 92.0 |
-| triggered | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.4 |
+| triggered | 30-36 h |  | 0.715 | 0.11 | 0.81 | 126.3 |
 | triggered | 36-42 h | yes | 0.273 | 0.15 | 0.30 | 117.5 |
 | triggered | 42-48 h | yes | 0.925 | 0.40 | 0.94 | 11.2 |

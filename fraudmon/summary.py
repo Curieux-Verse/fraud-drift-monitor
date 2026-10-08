@@ -374,5 +374,5 @@ def write():
         _drift(),
         _simulation(),
     ]
-    SUMMARY_FILE.write_text("\n\n".join(sections) + "\n", encoding="utf-8")
+    SUMMARY_FILE.write_text("\n\n".join(sections) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {SUMMARY_FILE.relative_to(C.ROOT)}", flush=True)

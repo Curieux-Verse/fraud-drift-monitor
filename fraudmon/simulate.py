@@ -133,7 +133,7 @@ def monitor_stream(stream, model, reference, detectors, bounds=None, cost_model=
     return records
 
 
-def null_control(train, oof, importance, threshold, reps=10, seed=C.SEED):
+def null_control(train, oof, importance, threshold, reps=40, seed=C.SEED):
     """False-alarm rate: compare random halves of each training window, where nothing drifted."""
     rng = np.random.default_rng(seed)
     windows = train["window"].to_numpy()

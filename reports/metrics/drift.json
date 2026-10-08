@@ -235,11 +235,11 @@
     }
   ],
   "null_control": {
-    "checks": 40,
-    "warn": 0,
-    "retrain": 0,
-    "max_feature_psi": 0.007204,
-    "max_score_psi": 0.006104
+    "checks": 160,
+    "warn": 5,
+    "retrain": 1,
+    "max_feature_psi": 0.012798,
+    "max_score_psi": 0.008458
   },
   "natural_windows": [
     {
@@ -281,8 +281,8 @@
       "n_features_drifted": 8,
       "weighted_share": 0.05959,
       "score_psi": 0.20499,
-      "alert_rate": 0.005746,
-      "alert_ratio": 1.151204,
+      "alert_rate": 0.005718,
+      "alert_ratio": 1.145615,
       "anomaly_ratio": {
         "isolation_forest": 0.764291,
         "autoencoder": 0.68893
@@ -294,8 +294,8 @@
       "ap_rel_drop": 0.173345,
       "ap_diff_hi": -0.029496,
       "recall": 0.814815,
-      "precision": 0.106796,
-      "cost_per_1k": 126.4107,
+      "precision": 0.107317,
+      "cost_per_1k": 126.271234,
       "state": "RETRAIN",
       "label_free_state": "WARN",
       "rules": [

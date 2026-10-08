@@ -50,15 +50,9 @@ def _clean(obj):
 def save_metrics(name, payload):
     C.METRIC_DIR.mkdir(parents=True, exist_ok=True)
     path = C.METRIC_DIR / f"{name}.json"
-    path.write_text(json.dumps(_clean(payload), indent=2) + "\n", encoding="utf-8")
+    # LF on every platform, so regenerated files match the repository byte for byte.
+    path.write_text(json.dumps(_clean(payload), indent=2) + "\n", encoding="utf-8", newline="\n")
     _log(f"wrote {path.relative_to(C.ROOT)}")
-
-
-def load_metrics(name):
-    path = C.METRIC_DIR / f"{name}.json"
-    if not path.exists():
-        raise FileNotFoundError(f"{path} not found. Run the earlier pipeline steps first.")
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 # --- data ---------------------------------------------------------------------------------
@@ -334,6 +328,18 @@ def _cost_curve(y, scores, amount, cm, max_alert_rate=0.03, points=300):
     }
 
 
+def _operating_threshold(art, cm=None):
+    """The cost-minimising threshold on validation.
+
+    Every stage that needs it computes it here. The copy in threshold.json is rounded for
+    reading, and a rounded threshold can flag a different set of rows.
+    """
+    val = art["val"]
+    return cost.best_threshold(
+        val["Class"].to_numpy(), models.predict(art["model"], val), val["Amount"].to_numpy(), cm or C.CostModel()
+    )
+
+
 def step_threshold(art=None):
     """Pick the operating threshold from the cost model and test how sensitive the choice is."""
     art = art or _artifacts()
@@ -343,7 +349,7 @@ def step_threshold(art=None):
     y_test, a_test = test["Class"].to_numpy(), test["Amount"].to_numpy()
     s_val, s_test = models.predict(art["model"], val), models.predict(art["model"], test)
 
-    threshold = cost.best_threshold(y_val, s_val, a_val, cm)
+    threshold = _operating_threshold(art, cm)
     resampled = cost.bootstrap_thresholds(y_val, s_val, a_val, cm)
     calibrator = models.fit_platt(s_val, y_val)
     p_test = models.apply_platt(calibrator, s_test)
@@ -391,7 +397,7 @@ def _reference(art):
     """The monitor's reference: day 1, out-of-fold scores, and the chosen threshold."""
     importance = models.gain_importance(art["model"])
     anomaly_oof = {name: art["oof"][name] for name in models.DETECTORS}
-    threshold = load_metrics("threshold")["threshold"]
+    threshold = _operating_threshold(art)
     reference = build_reference(art["train"], art["oof"]["supervised"], importance, threshold, anomaly_oof)
     return reference, importance
 

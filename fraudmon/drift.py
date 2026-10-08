@@ -54,10 +54,15 @@ def score_psi(ref_scores, cur_scores):
 
 
 def exceed_ratio(ref_values, cur_values, cut):
-    """Share of current values at or above the cut, relative to the reference share."""
+    """Share of current values at or above the cut, relative to the reference share.
+
+    Infinite when the reference has nothing above the cut and the current window does.
+    """
     ref_rate = float(np.mean(np.asarray(ref_values) >= cut))
     cur_rate = float(np.mean(np.asarray(cur_values) >= cut))
-    return cur_rate / ref_rate if ref_rate > 0 else float("nan")
+    if ref_rate > 0:
+        return cur_rate / ref_rate
+    return float("inf") if cur_rate > 0 else float("nan")
 
 
 def domain_auc(ref, cur, features=C.FEATURES, seed=C.SEED):

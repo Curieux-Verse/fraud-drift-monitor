@@ -53,4 +53,9 @@ def test_exceed_ratio_compares_tail_shares():
     ref = np.array([0.1] * 98 + [0.9] * 2)
     cur = np.array([0.1] * 94 + [0.9] * 6)
     assert math.isclose(drift.exceed_ratio(ref, cur, 0.5), 3.0)
-    assert math.isnan(drift.exceed_ratio(np.zeros(10), cur, 0.5))
+
+
+def test_exceed_ratio_when_the_reference_has_nothing_above_the_cut():
+    cur = np.array([0.1] * 94 + [0.9] * 6)
+    assert drift.exceed_ratio(np.zeros(10), cur, 0.5) == math.inf  # alerts where there were none
+    assert math.isnan(drift.exceed_ratio(np.zeros(10), np.zeros(10), 0.5))  # none on either side

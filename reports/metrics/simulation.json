@@ -820,8 +820,8 @@
           "n_rows": 35851,
           "n_frauds": 27,
           "frauds_missed": 5,
-          "false_alarms": 184,
-          "cost": 4531.95,
+          "false_alarms": 183,
+          "cost": 4526.95,
           "retrained_before": false,
           "previous_window_state": "WARN",
           "previous_window_rules": [
@@ -831,8 +831,8 @@
           ],
           "ap": 0.71543,
           "recall": 0.814815,
-          "precision": 0.106796,
-          "cost_per_1k": 126.4107
+          "precision": 0.107317,
+          "cost_per_1k": 126.271234
         },
         {
           "policy": "static",
@@ -971,8 +971,8 @@
           "n_rows": 35851,
           "n_frauds": 27,
           "frauds_missed": 5,
-          "false_alarms": 184,
-          "cost": 4531.95,
+          "false_alarms": 183,
+          "cost": 4526.95,
           "retrained_before": false,
           "previous_window_state": "WARN",
           "previous_window_rules": [
@@ -982,8 +982,8 @@
           ],
           "ap": 0.71543,
           "recall": 0.814815,
-          "precision": 0.106796,
-          "cost_per_1k": 126.4107
+          "precision": 0.107317,
+          "cost_per_1k": 126.271234
         },
         {
           "policy": "triggered",
@@ -1047,8 +1047,8 @@
           "n_rows": 35851,
           "n_frauds": 27,
           "frauds_missed": 5,
-          "false_alarms": 184,
-          "cost": 4531.95,
+          "false_alarms": 183,
+          "cost": 4526.95,
           "retrained_before": false,
           "previous_window_state": "WARN",
           "previous_window_rules": [
@@ -1058,8 +1058,8 @@
           ],
           "ap": 0.71543,
           "recall": 0.814815,
-          "precision": 0.106796,
-          "cost_per_1k": 126.4107
+          "precision": 0.107317,
+          "cost_per_1k": 126.271234
         },
         {
           "policy": "static",
@@ -1199,8 +1199,8 @@
           "n_rows": 35851,
           "n_frauds": 27,
           "frauds_missed": 5,
-          "false_alarms": 184,
-          "cost": 4531.95,
+          "false_alarms": 183,
+          "cost": 4526.95,
           "retrained_before": false,
           "previous_window_state": "WARN",
           "previous_window_rules": [
@@ -1210,8 +1210,8 @@
           ],
           "ap": 0.71543,
           "recall": 0.814815,
-          "precision": 0.106796,
-          "cost_per_1k": 126.4107
+          "precision": 0.107317,
+          "cost_per_1k": 126.271234
         },
         {
           "policy": "triggered",
@@ -1259,10 +1259,10 @@
         {
           "policy": "static",
           "retrains": 0,
-          "cost": 11887.06,
+          "cost": 11882.06,
           "frauds": 211,
           "frauds_missed": 30,
-          "false_alarms": 720
+          "false_alarms": 719
         },
         {
           "policy": "periodic",
@@ -1275,20 +1275,20 @@
         {
           "policy": "triggered",
           "retrains": 1,
-          "cost": 11169.15,
+          "cost": 11164.15,
           "frauds": 211,
           "frauds_missed": 33,
-          "false_alarms": 465
+          "false_alarms": 464
         }
       ],
       "S4_new_tactic": [
         {
           "policy": "static",
           "retrains": 0,
-          "cost": 18774.17,
+          "cost": 18769.17,
           "frauds": 211,
           "frauds_missed": 96,
-          "false_alarms": 720
+          "false_alarms": 719
         },
         {
           "policy": "periodic",
@@ -1301,10 +1301,10 @@
         {
           "policy": "triggered",
           "retrains": 2,
-          "cost": 11905.9,
+          "cost": 11900.9,
           "frauds": 211,
           "frauds_missed": 57,
-          "false_alarms": 448
+          "false_alarms": 447
         }
       ]
     }

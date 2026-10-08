@@ -90,7 +90,8 @@ def _state(rules, retrain_prefixes):
 
 
 def _outside(value, band):
-    return bool(np.isfinite(value)) and not band[0] <= value <= band[1]
+    """True for a ratio beyond the band, including an infinite one. NaN means nothing to compare."""
+    return not np.isnan(value) and not band[0] <= value <= band[1]
 
 
 def _strong_prediction_drift(sig, b):
@@ -114,7 +115,7 @@ def decide(sig, history=(), bounds=None):
             rules.append("W_score_psi")
         if _outside(sig.alert_ratio, b.alert_ratio_warn):
             rules.append("W_alert_rate")
-        if any(r > b.anomaly_ratio_warn for r in sig.anomaly_ratio.values() if np.isfinite(r)):
+        if any(r > b.anomaly_ratio_warn for r in sig.anomaly_ratio.values()):  # false for NaN
             rules.append("W_anomaly_rate")
 
         previous = list(history)[len(history) - (b.persistence - 1) :] if b.persistence > 1 else []
@@ -125,7 +126,7 @@ def decide(sig, history=(), bounds=None):
             rules.append("R3_corroborated_input_drift")
 
     if (
-        sig.n_frauds is not None
+        sig.ap_rel_drop is not None  # set only when labels allowed a comparison
         and sig.n_frauds >= b.min_frauds
         and sig.ap_rel_drop >= b.perf_rel_drop
         and sig.ap_diff_hi < 0
@@ -196,9 +197,10 @@ class Monitor:
         sig.n_frauds = int(y.sum())
         sig.recall, sig.precision = outcome["recall"], outcome["precision"]
         sig.cost_per_1k = outcome["cost_per_1k"]
-        if sig.n_frauds == 0:
-            return
         ref_y, ref_scores = ref.labels[pos], ref.scores[pos]
+        # AP needs frauds and legitimate rows on both sides; without them there is nothing to compare.
+        if not (0 < sig.n_frauds < len(y) and 0 < ref_y.sum() < len(ref_y)):
+            return
         prior = float(np.mean(ref_y))  # judge the window at the reference window's fraud rate
         if pos not in ref.ap_draws:
             ref.ap_draws[pos] = metrics.bootstrap_ap(ref_y, ref_scores, seed=self.seed)

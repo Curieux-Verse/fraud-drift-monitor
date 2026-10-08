@@ -1,5 +1,7 @@
 """Tests for the alert policy."""
 
+import math
+
 import numpy as np
 import pandas as pd
 
@@ -54,6 +56,13 @@ def test_alert_rate_outside_the_retrain_band_counts_as_prediction_drift():
     surge = quiet(alert_ratio=3.0)
     collapse = quiet(alert_ratio=0.3)
     assert decide(collapse, history=[surge], bounds=BOUNDS).state == "RETRAIN"
+
+
+def test_alerts_appearing_where_the_reference_had_none_are_not_ignored():
+    appeared = quiet(alert_ratio=math.inf)
+    assert decide(appeared, bounds=BOUNDS).rules == ["W_alert_rate"]
+    assert decide(appeared, history=[appeared], bounds=BOUNDS).state == "RETRAIN"
+    assert decide(quiet(alert_ratio=math.nan), bounds=BOUNDS).state == "OK"  # no alerts on either side
 
 
 def test_input_drift_on_important_features_needs_corroboration():
@@ -129,6 +138,25 @@ def test_performance_is_compared_with_the_same_time_of_day(big_frame):
     # Window 4 is judged against window 0, where the reference model was good, not the day average.
     assert signals.ap_reference > 0.9
     assert abs(signals.ap_rel_drop) < 0.1
+
+
+def test_performance_comparison_is_skipped_when_either_side_lacks_a_class(big_frame):
+    day1 = big_frame[big_frame["window"] <= 3]
+    current = big_frame[big_frame["window"] == 4]
+    y = current["Class"].to_numpy()
+
+    fraud_free = build_reference(day1, toy_scores(day1), pd.Series({"V14": 1.0}), 0.5)
+    fraud_free.labels[0] = np.zeros_like(fraud_free.labels[0])  # no fraud in the matching reference window
+    signals, decision = Monitor(fraud_free).check(4, current, toy_scores(current), y)
+    assert signals.recall > 0.9  # the threshold metrics are still reported
+    assert signals.ap_rel_drop is None
+    assert "R1_performance" not in decision.rules
+
+    ref = build_reference(day1, toy_scores(day1), pd.Series({"V14": 1.0}), 0.5)
+    only_frauds = current[current["Class"] == 1]
+    signals, _ = Monitor(ref).check(4, only_frauds, toy_scores(only_frauds), only_frauds["Class"].to_numpy())
+    assert signals.n_frauds == len(only_frauds)
+    assert signals.ap_rel_drop is None
 
 
 def test_monitor_stays_quiet_without_drift_and_reacts_to_it(big_frame):

@@ -13,13 +13,13 @@ It is built on the [ULB credit card fraud dataset](https://www.kaggle.com/datase
 - **Rebalancing did not help the strong model.** LightGBM scored 0.789 with no rebalancing, 0.794 with class weights, 0.746 with SMOTE and 0.749 with undersampling. The last three overstate fraud probability by 3 to 54 times.
 - **A cost-based threshold removes 66% of the fraud cost on test**, but the choice is fragile: pricing a false alarm at EUR 10 instead of EUR 5 moves the best threshold from 0.0085 to 0.62.
 - **The dataset contains real drift, and most of it is harmless.** Between day 1 and day 2, 8 of 29 features cross the usual PSI bound of 0.25, yet they carry 6% of the model's importance. The monitor warns, then flags a retrain when alert volume doubles. Retraining cut total cost by 6% to 9%.
-- **On injected drift the monitor stayed quiet on the control and flagged the harmful cases.** A new fraud tactic that cut recall from 0.84 to 0.32 moved no label-free signal and was caught only once labels arrived.
+- **On injected drift the monitor stayed quiet on the control and flagged the harmful cases.** In 160 separate drift-free checks it warned 5 times and wrongly flagged one retrain. A new fraud tactic that cut recall from 0.84 to 0.32 moved no label-free signal and was caught only once labels arrived.
 
 ![Precision-recall and ROC curves for the four models on the test window](reports/figures/pr_vs_roc.png)
 
 ## Setup
 
-Tested with Python 3.11 on Windows 11. Dependencies are pinned in `requirements.txt`.
+Needs Python 3.11 or newer: the pinned numpy, scipy, scikit-learn and matplotlib do not install on 3.10. Tested with Python 3.11 on Windows 11. Dependencies are pinned in `requirements.txt`.
 
 ```bash
 python -m venv .venv
@@ -39,7 +39,7 @@ The largest dependency is PyTorch, used only for the autoencoder. Two things to 
 python -m fraudmon all
 ```
 
-This runs three stages. On a laptop CPU (Intel i5-13500H) it took 15 minutes with the machine idle and 36 minutes with it busy:
+This runs three stages. On a laptop CPU (Intel i5-13500H) it took 12 minutes on one idle run, 15 on another, and 36 minutes with the machine busy:
 
 1. **`data`** downloads the CSV (150 MB) from a public mirror and checks its md5.
 2. **`train`** compares the imbalance strategies, then fits the final models and saves them to `models/`.
@@ -53,22 +53,22 @@ If the download fails, get `creditcard.csv` from the Kaggle page above and put i
 python -m fraudmon evaluate
 ```
 
-This reloads the saved models and rewrites everything under `reports/` without refitting them. It takes about 8 minutes on an idle machine, most of it in the simulations, which refit models as part of what they measure.
+This reloads the saved models and rewrites everything under `reports/` without refitting them. It takes 6 to 8 minutes on an idle machine, most of it in the simulations, which refit models as part of what they measure.
 
 Each stage can also be run on its own:
 
 | Command | What it does | Time, idle machine |
 |---|---|---|
 | `python -m fraudmon data` | Download, verify, summarise the data | 1 to 2 min |
-| `python -m fraudmon train` | Imbalance comparison, final models, out-of-fold reference scores | 6.5 min |
-| `python -m fraudmon compare` | Supervised and unsupervised models on validation and test | 15 s |
+| `python -m fraudmon train` | Imbalance comparison, final models, out-of-fold reference scores | 5 to 7 min |
+| `python -m fraudmon compare` | Supervised and unsupervised models on validation and test | 10 to 15 s |
 | `python -m fraudmon threshold` | Cost-based threshold, sensitivity grid, calibration | 5 s |
-| `python -m fraudmon drift` | Natural drift, false-alarm control, monitor on day 2 | 1 min |
-| `python -m fraudmon simulate` | Injected scenarios, new-tactic visibility, retrain policies | 6 min |
+| `python -m fraudmon drift` | Natural drift, false-alarm control, monitor on day 2 | 2 min |
+| `python -m fraudmon simulate` | Injected scenarios, new-tactic visibility, retrain policies | 4 to 6 min |
 | `python -m fraudmon plots` | Figures, from the metrics JSON only | 10 s |
 | `python -m fraudmon summary` | `reports/summary.md`, from the metrics JSON only | 1 s |
 
-`threshold` must run before `drift` and `simulate`, which read the chosen threshold.
+`compare`, `threshold`, `drift` and `simulate` each need only the output of `train`. `plots` and `summary` read the JSON that those four write.
 
 To test other assumptions, edit `CostModel` (the cost of each kind of error) or `AlertBounds` (when the monitor warns or flags a retrain) in [fraudmon/config.py](fraudmon/config.py) and run `evaluate` again.
 
@@ -78,7 +78,7 @@ To test other assumptions, edit `CostModel` (the cost of each kind of error) or 
 python -m pytest
 ```
 
-65 tests, about 30 seconds. They use synthetic data, so they do not need the dataset.
+70 tests, about 30 seconds. They use synthetic data, so they do not need the dataset.
 
 ## Layout
 
@@ -111,7 +111,9 @@ REPORT.md       the write-up
 
 Seeds are fixed in `config.py`, LightGBM runs in deterministic mode, and the thread count is fixed at 4 so results do not depend on the number of cores.
 
-Running `python -m fraudmon all` from a clean clone on the same machine reproduced every committed file under `reports/` byte for byte. Small differences in the last decimals are possible on other platforms or library builds.
+Two independent runs on the same machine produced the same files under `reports/` byte for byte: one from a clean clone that downloaded the data and retrained every model, and one that re-ran `evaluate` on models saved earlier. To check a run of your own, `git status` should list nothing under `reports/` afterwards.
+
+`.gitattributes` checks the generated JSON and Markdown out with LF line endings on every platform, which is how the pipeline writes them. Small differences in the last decimals are possible on other platforms or library builds, and the figures will likely differ on systems without the Segoe UI font.
 
 ## Data
 
